@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+
+    <main>
+        <div class="">
+            <div class="menu flex align-center gap-4 p-3">
+                <form class="add-text-form flex align-center gap-2">
+                    <textarea class="border border-1 rounded-md p-1" name="" id=""></textarea>
+                    <input type="submit" value="add text">
+                </form>
+                <div class="flex align-center gap-2">
+                    <input class="font-size-input changeFontSize w-[40px] rounded-md p-1"  type="number" value="12">
+                  <div class="flex align-center gap-2 border border-1 border-gray-300 rounded-md p-1">
+                    <button class="left-align">left</button>
+                    <button class="center-align">center</button>
+                    <button class="right-align">right</button>
+                  </div>
+
+                 <div>
+                    <input class="color-input"  type="color" value="#000000"> <br>
+                    <label for="color-input">color</label> 
+                 </div>
+                   
+                </div>
+            </div>
+            <div id="editor" class="editor min-h-[500px] border-1 border" contenteditable="true">
+
+            </div>
+
+        </div>
+    </main>
+
+
+    <script>
+        $(function(){
+            $(".add-text-form").on("submit", function(event){
+                event.preventDefault();
+                const text = $(this).find("textarea").val();
+                $("#editor").append(" ", text);
+                $(this).find("textarea").val("");
+            });
+            $(".changeFontSize").on("change", function(){
+                const size = $(this).val();
+                $("#editor").css("font-size", size + "px");
+            });
+
+            $(".left-align").on("click", function(){
+                $("#editor").css("text-align", "left");
+            });
+            $(".center-align").on("click", function(){
+                $("#editor").css("text-align", "center");
+            });
+            $(".right-align").on("click", function(){
+                $("#editor").css("text-align", "right");
+            });
+
+            $(".color-input").on("change", function(){
+                const color = $(this).val();
+                $("#editor").css("color", color);
+            });
+        });
+    </script>
+
+    </script>
+</body>
+
+</html>

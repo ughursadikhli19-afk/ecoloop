@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Page</title>
+  <link rel="stylesheet" href="./shop.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+</head>
+
+<body>
+ 
+
+  <main class="main container">
+    <aside class="filters">
+      <form class="searchForm">
+        <input type="text" class="searchInput" placeholder="Search products..." />
+      </form>
+
+      <div class="categories">
+        <h3>Categories</h3>
+        <ul class="categoriesList"></ul>
+      </div>
+
+      <div class="Brands">
+        <h3>Brands</h3>
+        <ul class="brandsList"></ul>
+      </div>
+    </aside>
+
+    <section class="products_container">
+      <select name="sort" id="sortProductSelect" class="sortProductSelect">
+        <option disabled selected value="">Sort products</option>
+        <option value="ascprice">Price Ascending</option>
+        <option value="descprice">Price Descending</option>
+      </select>
+      <button class="allProductsBtn">⟳ All products</button>
+
+      <section class="products"></section>
+    </section>
+  </main>
+
+  <script type="module" src="./shop.js"></script>
+</body>
+
+</html>

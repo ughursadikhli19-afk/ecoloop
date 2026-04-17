@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Уведомления о задачах</title>
+  </head>
+  <body>
+    <style>
+        * {
+  box-sizing: border-box;   
+  margin: 0;
+    padding: 0;
+        }
+body {
+  background: linear-gradient( #0095ff, #6600ff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+
+}
+
+.container {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 320px;
+ 
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #42a5f5;
+}
+
+button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  background: #42a5f5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  
+
+}
+    </style>
+<div class="container">
+    <h1>Уведомления о задачах</h1>
+    <label for="task">Задача:</label>
+    <input type="text" id="task" />
+    <label for="taskDate">Дата и время выполнения:</label>
+    <input type="datetime-local" id="taskDate" />
+    <button onclick="setAlert()">Установить уведомление</button>
+
+    <script>
+      function setAlert() {
+        const task = document.getElementById("task").value;
+        const taskDate = new Date(document.getElementById("taskDate").value);
+        const currentDate = new Date();
+        if (
+          task.trim() === "" ||
+          isNaN(taskDate.getTime()) ||
+          taskDate <= currentDate
+        ) {
+          alert("Пожалуйста, введите корректные данные.");
+          return;
+        }
+        const timeDifference = taskDate - currentDate;
+        setTimeout(function () {
+          alert('Время выполнения задачи "' + task + '" наступило!');
+        }, timeDifference);
+      }
+    </script>
+  </body>
+</html>

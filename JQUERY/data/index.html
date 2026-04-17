@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery  HW</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+
+<!-- 1 -->
+
+<!--
+1) .parent() — берёт только прямого родителя
+   .parents() — берёт всех предков вверх по DOM
+
+2) .children() — только прямые дети
+   .find() — все потомки любой глубины
+
+3) $("li").eq(0) — это первый элемент
+
+4) .closest() лучше, когда нужен ближайший подходящий предок
+-->
+
+<!-- 2 -->
+
+<div id="wrapper">
+  <section>
+    <article>
+      <p id="target">Привет!</p>
+    </article>
+  </section>
+</div>
+
+<!-- 3  -->
+
+<div class="container">
+  <h2>Заголовок</h2>
+  <p>Параграф 1</p>
+  <p class="highlight">Параграф 2</p>
+  <p>Параграф 3</p>
+  <footer>footer</footer>
+</div>
+
+<!-- 4 -->
+
+<ul id="items">
+  <li>Яблоко</li>
+  <li class="sale">Банан</li>
+  <li>Вишня</li>
+  <li class="sale">Дыня</li>
+  <li>Ежевика</li>
+</ul>
+
+<!--  5 -->
+
+<div id="accordion">
+  <div class="block">
+    <h3>Раздел 1</h3>
+    <div class="content">Текст раздела 1</div>
+  </div>
+  <div class="block">
+    <h3>Раздел 2</h3>
+    <div class="content">Текст раздела 2</div>
+  </div>
+  <div class="block">
+    <h3>Раздел 3</h3>
+    <div class="content">Текст раздела 3</div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+  // 2 
+
+
+  $("#target").parent().css("background", "red");
+
+  let ancestors = $("#target").parentsUntil("#wrapper");
+  ancestors.addClass("ancestor");
+
+  console.log("Предки:", ancestors.length);
+
+
+  //  3
+
+
+  $(".highlight").siblings().css("background", "yellow");
+
+
+  $(".highlight").next().addClass("after-highlight");
+
+  let count = $("footer").prevAll().length;
+  console.log("До footer:", count);
+
+
+  // 4 
+
+  // Только .sale 
+  $("#items li").filter(".sale").css("color", "green");
+
+  // Все кроме .sale 
+  $("#items li").not(".sale").css("color", "gray");
+
+  // Третий элемент
+  $("#items li").eq(2).append(" [скидка]");
+
+
+  //  5 
+
+  $("#accordion h3").click(function() {
+    let block = $(this).closest(".block");
+
+    
+    block.find(".content").slideToggle();
+
+   
+    block.siblings().find(".content").slideUp();
+
+
+    block.addClass("open");
+    block.siblings().removeClass("open");
+  });
+
+});
+</script>
+
+</body>
+</html>

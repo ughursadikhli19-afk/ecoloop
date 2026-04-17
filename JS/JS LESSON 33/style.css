@@ -1,0 +1,22 @@
+*{margin: 0;
+padding: 0;
+box-sizing: border-box;}
+
+.game{
+background-color: rgb(255, 235, 235);
+width: 900px;
+height: 900px;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 300px 300px 300px;
+}
+
+.child{
+border: 1px solid grey;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+i{
+font-size: 100px;
+}

@@ -1,0 +1,57 @@
+  #box1 {
+    width: 50px;
+    height: 50;
+    background: rgb(255, 0, 0);
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+
+  #box2 {
+    background: rgb(174, 255, 0);
+    padding: 10px;
+    width: 150px;
+    margin-bottom: 20px;
+  }
+
+
+  #circle {
+    width: 100px;
+    height: 100px;
+    background: red;
+    border-radius: 100%;
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+ 
+  .dropdown h3 {
+    cursor: pointer;
+    background: #ccc;
+    margin: 0;
+    padding: 10px;
+  }
+  .dropdown .content {
+    display: none;
+    padding: 10px;
+    background: #eee;
+  }
+
+ 
+  #box5 {
+    display: none;
+    padding: 10px;
+    background: #f0f0f0;
+    margin-bottom: 20px;
+  }
+
+
+  .card {
+    padding: 10px;
+    font-size: 16px;
+    background: #ffa;
+    width: 150px;
+    text-align: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }

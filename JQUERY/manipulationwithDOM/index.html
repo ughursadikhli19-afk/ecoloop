@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery DOM</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h2>Задание 1</h2>
+<p id="p1">Это обычный текст</p>
+<div id="div1"><strong>Жирный текст</strong></div>
+<input id="input1" value="Привет">
+
+<button id="showBtn">Показать</button>
+<div id="output" class="box"></div>
+
+
+
+<h2>Задание 2</h2>
+<a id="link" href="https://google.com" title="Поиск">Ссылка</a><br>
+
+<button id="setAttr">Изменить атрибуты</button>
+
+
+
+<h2>Задание 3---?????</h2>
+
+
+<h2>Задание 4</h2>
+<ul id="list">
+    <li>Элемент 1</li>
+    <li>Элемент 2</li>
+</ul>
+
+<button id="append">В конец</button>
+<button id="prepend">В начало</button>
+<button id="after">После списка</button>
+<button id="before">Перед списком</button>
+
+
+<h2>Задание 5</h2>          
+<div id="container" class="box">
+    <p class="test">Test 1</p>
+    <p class="demo">Demo</p>
+    <p class="test">Test 2</p>
+    <p>Без класса</p>
+</div>
+
+<button id="removeTest">delete .test</button>
+<button id="emptyDiv"> delete all</button>
+
+<script>
+
+// ЗАДАНИЕ 1
+$("#showBtn").click(function () {
+    let text = $("#p1").text();
+    let html = $("#div1").html();
+    let val = $("#input1").val();
+
+    $("#output").html(`
+        text(): ${text} <br>
+        html(): ${html} <br>
+        val(): ${val}
+    `);
+});
+
+// ЗАДАНИЕ 2
+
+$("#setAttr").click(function () {
+    $("#link").attr({
+        href: "https://youtube.com",
+        title: "Видео"
+    });
+});
+
+// ЗАДАНИЕ 3
+//???
+
+// ЗАДАНИЕ 4
+$("#append").click(function () {
+    $("#list").append("<li>Новый (append)</li>");
+});
+
+$("#prepend").click(function () {
+    let li = $("<li>Новый (prepend)</li>");
+    $("#list").prepend(li);
+});
+
+$("#after").click(function () {
+    let p = document.createElement("p");
+    p.innerText = "Параграф после списка";
+    $("#list").after(p);
+});
+
+$("#before").click(function () {
+    $("#list").before("<p>Параграф перед списком</p>");
+});
+
+// ЗАДАНИЕ 5
+$("#removeTest").click(function () {
+    $("p.test").remove();
+});
+
+$("#emptyDiv").click(function () {
+    $("#container").empty();
+});
+
+</script>
+
+</body>
+</html>

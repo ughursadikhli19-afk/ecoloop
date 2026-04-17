@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game {
+    background-color: rgb(216, 251, 255);
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.azn {
+    width: 150px;
+    position: absolute;
+    animation: movement 1s infinite alternate ease-in-out;
+    /* animation: falling 2s; */
+}
+
+@keyframes movement {
+    0% {
+        transform: translate(10px);
+    }
+
+    50% {
+        transform: translate(-10px);
+    }
+
+    100% {
+        transform: translate(10px);
+    }
+}

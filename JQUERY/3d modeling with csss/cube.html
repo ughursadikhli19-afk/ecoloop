@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Cube</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #111;
+
+    /* 🔥 перспектива */
+    perspective: 800px;
+}
+
+/* куб */
+.cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+}
+
+/* стороны */
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+
+    border: 2px solid white;
+}
+
+/* каждая сторона */
+.front  { background: rgba(255, 0, 0, 0.7); transform: rotateY(0deg) translateZ(100px); }
+.back   { background: rgba(0, 255, 0, 0.7); transform: rotateY(180deg) translateZ(100px); }
+.right  { background: rgba(0, 0, 255, 0.7); transform: rotateY(90deg) translateZ(100px); }
+.left   { background: rgba(255, 255, 0, 0.7); transform: rotateY(-90deg) translateZ(100px); }
+
+.top    { background: rgba(0, 255, 255, 0.7); transform: rotateX(90deg) translateZ(100px); }
+.bottom { background: rgba(255, 0, 255, 0.7); transform: rotateX(-90deg) translateZ(100px); }
+</style>
+</head>
+
+<body>
+
+<div class="cube" id="cube">
+    <div class="face front">1</div>
+    <div class="face back">2</div>
+    <div class="face right">3</div>
+    <div class="face left">4</div>
+    <div class="face top">5</div>
+    <div class="face bottom">6</div>
+</div>
+
+<script>
+let angleX = 0;
+let angleY = 0;
+let angleZ = 0;
+let translateZ = 0;
+
+const cube = document.getElementById('cube');
+
+function update() {
+    cube.style.transform = `
+        rotateX(${angleX}deg)
+        rotateY(${angleY}deg)
+        rotateZ(${angleZ}deg)
+        translateZ(${translateZ}px)
+    `;
+}
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+
+    // вращение
+    if (key === 'd') angleZ += 5;
+    if (key === 'a') angleZ -= 5;
+
+    // движение
+    if (key === 'w') translateZ += 20;
+    if (key === 's') translateZ -= 20;
+
+    // стрелки
+    if (e.key === 'ArrowUp') angleX -= 5;
+    if (e.key === 'ArrowDown') angleX += 5;
+    if (e.key === 'ArrowLeft') angleY -= 5;
+    if (e.key === 'ArrowRight') angleY += 5;
+
+    update();
+});
+</script>
+
+</body>
+</html>

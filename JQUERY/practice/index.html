@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="h-screen bg-gray-500 grid grid-cols-5 gap-4 p-4">
+        <div class="backlog bg-red-500">
+            <h2>Backlog</h2>
+        </div>
+        <div class="todo bg-yellow-500">
+            <h2>Todo</h2>
+        </div>
+        <div class="inProgress bg-blue-500">
+            <h2>In Progress</h2>
+        </div>
+        <div class="review bg-purple-500">
+            <h2>Review</h2>
+
+        </div>
+        <div class="done bg-green-500">
+            <h2>Done</h2>
+        </div>
+    </div>
+
+    <script>
+        let card = {
+            title: "make homepage",
+            description: "this is the description of the card",
+            status: "backlog"
+        }
+        const cards = [
+            {
+                title: "make homepage",
+                description: "this is the description of the card",
+                status: "todo"
+            },
+            {
+                title: "make login page",
+                description: "this is the description of the card",
+                status: "done"
+            }
+        ]
+
+        const backlogCard = cards.filter(card => card.status === "backlog");
+        const todoCard = cards.filter(card => card.status === "todo");
+        const inProgressCard = cards.filter(card => card.status === "inProgress");
+        const reviewCard = cards.filter(card => card.status === "review");
+        const doneCard = cards.filter(card => card.status === "done");
+
+        const backlogContainer = document.querySelector(".backlog");
+        const todoContainer = document.querySelector(".todo");
+        const inProgressContainer = document.querySelector(".inProgress");
+        const reviewContainer = document.querySelector(".review");
+        const doneContainer = document.querySelector(".done");
+
+        cards.forEach(card => {
+            const cardElement = document.createElement("div");
+            cardElement.classList.add("card", "bg-white", "p-4", "m-2", "rounded", "shadow", "text-[10px]");
+           
+            cardElement.innerHTML = `   
+                <p>  ${card.title}</p>
+            `;
+            const nextButton = document.createElement("button");
+
+            nextButton.classList.add("block", "m-1", "ml-auto", "border", "p-1");
+            nextButton.textContent = "Next";
+            nextButton.addEventListener("click", () => { 
+                   if(card.status === "backlog") {
+                    card.status = "todo";
+                    todoContainer.appendChild(cardElement);
+                   } else if(card.status === "todo") {
+                    card.status = "inProgress"; 
+                    inProgressContainer.appendChild(cardElement);
+                   } else if(card.status === "inProgress") {
+                    card.status = "review"; 
+                    reviewContainer.appendChild(cardElement);
+                   } else if(card.status === "review") {
+                    card.status = "done"; 
+                    doneContainer.appendChild(cardElement);
+                   }
+            });
+            cardElement.appendChild(nextButton);
+            if (card.status === "backlog") {
+                backlogContainer.appendChild(cardElement);
+            } else if (card.status === "todo") {
+                todoContainer.appendChild(cardElement);
+            } else if (card.status === "inProgress") {
+                inProgressContainer.appendChild(cardElement);
+            } else if (card.status === "review") {
+                reviewContainer.appendChild(cardElement);
+            } else if (card.status === "done") {
+                doneContainer.appendChild(cardElement);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2 class="question">
+What is the capital of USA? 
+        </h2>
+        <form class="quiz-form">
+           
+           
+         <div> 
+  <input type="radio" name="option" id="option1" class="option1" value="0"> 
+<label for="option1" class="option1Text">1)baku</label>
+</div>
+    <div>
+    <input type="radio" name="option" id="option2" class="option2" value="1">
+<label for="option2" class="option2Text">2)Wrexham</label>
+
+    </div>
+
+        <div>
+    <input type="radio" name="option" id="option3" class="option3" value="2">
+<label for="option3" class="option3Text">3)ankara</label>
+</div>
+<div>
+    <input type="radio" name="option" id="option4" class="option4" value="3">
+<label for="option4" class="option4Text">4)washington</label>
+</div>
+            <button type="button" class="nextBtn">Next</button>
+</form>
+<div class="result">
+
+</div><style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quiz-container {
+    background: #fff;
+    width: 350px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.question {
+    margin-bottom: 15px;
+}
+
+.quiz-form div {
+    margin-bottom: 10px;
+}
+
+label {
+    cursor: pointer;
+}
+
+.nextBtn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #667eea;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nextBtn:hover {
+    background: #5a6fdc;
+}
+
+.result {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+</style>
+    </div>
+   <script>
+const quizData = [
+{
+    question: "What is the capital of France?",
+    options: ["Berlin", "Madrid", "Paris", "Rome"],
+    answer: 2
+},
+{
+    question: "What is the capital of Spain?",
+    options: ["Barcelona", "Lisbon", "Sevilla", "Madrid"],
+    answer: 3
+},
+{
+    question: "What is the capital of Germany?",
+    options: ["Vienna", "Berlin", "Zurich", "Hamburg"],
+    answer: 1
+},
+{
+    question: "What is the capital of Azerbaijan?",
+    options: ["Ganja", "Sumgait", "Baku", "Shaki"],
+    answer: 2
+}
+];
+
+const questionElement = document.querySelector('.question');
+const option1Element = document.querySelector('.option1Text');
+const option2Element = document.querySelector('.option2Text');
+const option3Element = document.querySelector('.option3Text');
+const option4Element = document.querySelector('.option4Text');
+
+const nextBtn = document.querySelector('.nextBtn');
+const resultElement = document.querySelector('.result');
+
+let currentQuestion = 0;
+let correctAnswersCount = 0;
+let incorrectAnswersCount = 0;
+
+function loadQuestion() {
+    const q = quizData[currentQuestion];
+    questionElement.textContent = q.question;
+    option1Element.textContent = `1) ${q.options[0]}`;
+    option2Element.textContent = `2) ${q.options[1]}`;
+    option3Element.textContent = `3) ${q.options[2]}`;
+    option4Element.textContent = `4) ${q.options[3]}`;
+
+    document.querySelectorAll('input[name="option"]').forEach(i => i.checked = false);
+}
+
+function checkAnswer() {
+    const selected = document.querySelector('input[name="option"]:checked');
+    if (!selected) return;
+
+    const userAnswer = Number(selected.value);
+
+    if (userAnswer === quizData[currentQuestion].answer) {
+        resultElement.textContent = "Correct!";
+        resultElement.style.color = "green";
+        correctAnswersCount++;
+    } else {
+        resultElement.textContent = "Wrong!";
+        resultElement.style.color = "red";
+        incorrectAnswersCount++;
+    }
+
+    setTimeout(() => {
+        resultElement.textContent = "";
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            //alert(`Quiz completed! Correct: ${correctAnswersCount}, Incorrect: ${incorrectAnswersCount}`);
+            questionElement.textContent = `Quiz completed! Correct: ${correctAnswersCount}, Incorrect: ${incorrectAnswersCount}`;
+        }
+    }, 1500);
+}
+
+loadQuestion();
+nextBtn.addEventListener('click', checkAnswer);
+</script>
+
+</body>
+</html>

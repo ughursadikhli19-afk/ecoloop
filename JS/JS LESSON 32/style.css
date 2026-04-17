@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.traffic-light {
+  width: 120px;
+  padding: 15px 0;
+  background: black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.light {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: grey;
+  box-shadow:  0 0 10px grey;
+}
+
+.red.active {
+  background: red;
+}
+
+.yellow.active {
+  background: yellow;
+}
+
+.green.active {
+  background: limegreen;
+}
